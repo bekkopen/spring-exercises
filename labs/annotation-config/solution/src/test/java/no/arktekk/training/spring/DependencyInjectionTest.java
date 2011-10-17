@@ -62,6 +62,7 @@ public class DependencyInjectionTest {
 
         Auction auction = auctionService.findById(1D);
         assertEquals("My first auction", auction.description());
+        
     }
 
 
@@ -69,7 +70,7 @@ public class DependencyInjectionTest {
         return new ClassPathXmlApplicationContext("applicationContext.xml");
     }
 
-
+ 
     private AuctionRepository lookupAuctionRepository(ApplicationContext ctx) {
         return ctx.getBean(AuctionRepository.class);
     }

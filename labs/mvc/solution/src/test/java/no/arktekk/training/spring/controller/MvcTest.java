@@ -40,6 +40,7 @@ public class MvcTest {
             if (!stdSpringBeanNames(beanDefinedInApplicationCtx))
                 assertFalse("Found double registered bean : " + beanDefinedInApplicationCtx, webappCtx.containsBeanDefinition(beanDefinedInApplicationCtx));
         }
+        
     }
 
     /**

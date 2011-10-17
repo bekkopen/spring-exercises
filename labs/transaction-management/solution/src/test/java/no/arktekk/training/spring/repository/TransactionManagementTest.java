@@ -47,6 +47,7 @@ public class TransactionManagementTest {
         auctionService.newAuction(new Auction(1D, 100D, "Mint Progrog Records", new DateTime(), new DateTime().plusDays(10)));
 
         assertEquals(auctionsBeforeTest + 1, auctionCount());
+        
     }
 
 

@@ -23,7 +23,6 @@ public class AopTest {
      */
     @Test public void step_1() throws Exception {
         assertNotNull(ctx.getBean(AnnotationAwareAspectJAutoProxyCreator.class));
-
     }
 
     /**

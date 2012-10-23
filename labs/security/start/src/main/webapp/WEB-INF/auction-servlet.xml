@@ -9,7 +9,7 @@
 	<mvc:annotation-driven />
 
 	<context:component-scan base-package="no.arktekk.training.spring" use-default-filters="false">
-		<context:include-filter type="annotation"expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"

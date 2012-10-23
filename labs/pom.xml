@@ -30,6 +30,8 @@
 		<module>aop/start</module>
 		<module>mvc/start</module>
 
+		<module>labs/rest/start</module>
+		<module>labs/security/start</module>
 	</modules>
 
 	<properties>

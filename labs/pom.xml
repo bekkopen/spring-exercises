@@ -29,9 +29,8 @@
 		<module>transaction-management/start</module>
 		<module>aop/start</module>
 		<module>mvc/start</module>
-		<module>spring-base</module>
-		<module>labs/rest/start</module>
-		<module>labs/security/start</module>
+		<module>rest/start</module>
+		<module>security/start</module>
 	</modules>
 
 	<properties>

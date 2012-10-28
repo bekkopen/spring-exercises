@@ -5,7 +5,7 @@ import no.arktekk.training.spring.mapper.AuctionMapper;
 import no.arktekk.training.spring.repository.AuctionRepository;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -20,11 +20,11 @@ import static no.arktekk.training.spring.util.DatabaseUtils.timeStampFormatter;
  */
 @Repository
 public class JdbcAuctionRepository implements AuctionRepository {
-    private final SimpleJdbcTemplate template;
+    private final JdbcTemplate template;
 
     @Autowired
     public JdbcAuctionRepository(DataSource dataSource) {
-        this.template = new SimpleJdbcTemplate(dataSource);
+        this.template = new JdbcTemplate(dataSource);
     }
 
     public List<Auction> listAllRunningAuctions() {

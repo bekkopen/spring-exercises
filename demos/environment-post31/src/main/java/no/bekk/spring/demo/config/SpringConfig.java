@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
+@SuppressWarnings("unused")
 @Configuration
 //@ComponentScan({"no.bekk.spring.demo"})
 public class SpringConfig {

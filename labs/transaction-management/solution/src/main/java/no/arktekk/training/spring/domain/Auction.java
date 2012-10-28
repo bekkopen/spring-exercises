@@ -2,10 +2,6 @@ package no.arktekk.training.spring.domain;
 
 import org.joda.time.DateTime;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 /**
  * @author <a href="mailto:kaare.nilsen@arktekk.no">Kaare Nilsen</a>
  */

@@ -1,14 +1,11 @@
 package no.arktekk.training.spring.form;
 
-import no.arktekk.training.spring.domain.Auction;
-import org.joda.time.DateTime;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.format.annotation.NumberFormat.Style.NUMBER;
+import no.arktekk.training.spring.domain.Auction;
+
+import org.joda.time.DateTime;
 
 /**
  * @author <a href="mailto:kaare.nilsen@arktekk.no">Kaare Nilsen</a>

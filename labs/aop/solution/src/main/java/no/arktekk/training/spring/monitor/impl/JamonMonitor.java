@@ -1,7 +1,7 @@
 package no.arktekk.training.spring.monitor.impl;
 
-import com.jamonapi.MonitorFactory;
 import no.arktekk.training.spring.monitor.Monitor;
+
 import org.joda.time.DateTime;
 
 /**

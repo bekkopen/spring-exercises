@@ -46,7 +46,7 @@ public class AuctionApp {
         return dir.toString();
     }
 
-    private File getBaseDir(Class aClass) {
+    private File getBaseDir(Class<?> aClass) {
         String basedir = System.getProperty("basedir");
         if (basedir != null) {
             return new File(basedir);

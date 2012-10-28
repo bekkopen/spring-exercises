@@ -1,7 +1,7 @@
 package no.arktekk.training.spring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -21,12 +21,12 @@ import java.sql.SQLException;
 @Component
 public class TestDataPopulator {
     private final DataSource dataSource;
-    private final SimpleJdbcTemplate template;
+    private final JdbcTemplate template;
 
     @Autowired
     public TestDataPopulator(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.template = new SimpleJdbcTemplate(dataSource);
+        this.template = new JdbcTemplate(dataSource);
     }
 
     @PostConstruct

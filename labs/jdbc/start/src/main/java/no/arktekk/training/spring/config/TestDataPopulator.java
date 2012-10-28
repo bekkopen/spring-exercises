@@ -2,7 +2,7 @@ package no.arktekk.training.spring.config;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -25,13 +25,13 @@ import static no.arktekk.training.spring.util.DatabaseUtils.timeStampFormatter;
 @Component
 public class TestDataPopulator {
     private final DataSource dataSource;
-    private final SimpleJdbcTemplate template;
+    private final JdbcTemplate template;
     private boolean testDataInitialized = false;
 
     @Autowired
     public TestDataPopulator(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.template = new SimpleJdbcTemplate(dataSource);
+        this.template = new JdbcTemplate(dataSource);
     }
 
     @PostConstruct

@@ -2,7 +2,6 @@ package no.arktekk.training.spring.repository.impl;
 
 import no.arktekk.training.spring.domain.Auction;
 import no.arktekk.training.spring.repository.AuctionRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;

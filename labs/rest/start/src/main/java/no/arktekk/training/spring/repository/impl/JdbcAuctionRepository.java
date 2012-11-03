@@ -38,15 +38,16 @@ public class JdbcAuctionRepository implements AuctionRepository {
     }
 
     public Auction findById(String auctionId) {
-        return template.queryForObject("select * from Auctions where id = ?", new AuctionMapper(), auctionId);
+        List<Auction> auctions = template.query("select * from Auctions where id = ?", new AuctionMapper(), auctionId);
+        return auctions != null && auctions.size() > 0 ? auctions.get(0) : null;
     }
 
     public void newAuction(Auction auction) {
         template.update("insert into Auctions values(?,?,?,?,?)",
-                auction.id(),
-                auction.minimumPrice(),
-                timeStampFormatter.print(auction.starts().toDate(), no_NO),
-                timeStampFormatter.print(auction.expires().toDate(), no_NO),
-                auction.description());
+                auction.getId(),
+                auction.getMinimumPrice(),
+                timeStampFormatter.print(auction.getStarts().toDate(), no_NO),
+                timeStampFormatter.print(auction.getExpires().toDate(), no_NO),
+                auction.getDescription());
     }
 }

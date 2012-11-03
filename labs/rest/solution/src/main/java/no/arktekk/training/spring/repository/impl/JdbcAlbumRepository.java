@@ -35,7 +35,7 @@ public class JdbcAlbumRepository implements AlbumRepository {
     public void storeForAuction(String auctionId, List<Album> albums) {
         for (Album album : albums) {
             album.assignNewId();
-            template.update("insert into Albums values(?,?,?,?,?,?)", album.id(), auctionId, album.title(), album.artist(), album.category().getId(), album.label().getId());
+            template.update("insert into Albums values(?,?,?,?,?,?)", album.getId(), auctionId, album.getTitle(), album.getArtist(), album.getCategory().getId(), album.getLabel().getId());
         }
     }
 }

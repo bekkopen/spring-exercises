@@ -27,10 +27,10 @@ public class Transformations {
     public static Function<? super Album, ? extends AlbumForm> asAlbumForm = new Function<Album, AlbumForm>() {
         public AlbumForm apply(Album album) {
             AlbumForm form = new AlbumForm();
-            form.setArtist(album.artist());
-            form.setCategory(album.category());
-            form.setLabel(album.label());
-            form.setTitle(album.title());
+            form.setArtist(album.getArtist());
+            form.setCategory(album.getCategory());
+            form.setLabel(album.getLabel());
+            form.setTitle(album.getTitle());
             return form;
         }
     };
@@ -52,12 +52,12 @@ public class Transformations {
     public static Function<? super Auction, ? extends AuctionForm> asAuctionForm = new Function<Auction, AuctionForm>() {
         public AuctionForm apply(Auction auction) {
             AuctionForm form = new AuctionForm();
-            form.setAlbums(transform(auction.albums(), asAlbumForm));
-            form.setDescription(auction.description());
-            form.setExpiresDate(auction.expires());
-            form.setId(auction.id());
-            form.setMinimumPrice(auction.minimumPrice());
-            form.setStartDate(auction.starts());
+            form.setAlbums(transform(auction.getAlbums(), asAlbumForm));
+            form.setDescription(auction.getDescription());
+            form.setExpiresDate(auction.getExpires());
+            form.setId(auction.getId());
+            form.setMinimumPrice(auction.getMinimumPrice());
+            form.setStartDate(auction.getStarts());
             return form;
         }
     };

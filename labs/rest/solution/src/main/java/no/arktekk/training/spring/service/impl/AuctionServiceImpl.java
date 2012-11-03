@@ -30,9 +30,12 @@ public class AuctionServiceImpl implements AuctionService {
 
     public Auction findById(String auctionId) {
         Auction auction = auctionRepository.findById(auctionId);
-        List<Album> albums = albumRepository.listForAuction(auction.id());
+        if (auction == null) {
+        	return null;
+        }
+        List<Album> albums = albumRepository.listForAuction(auction.getId());
         for (Album album : albums) {
-            auction.albums().add(album);
+            auction.getAlbums().add(album);
         }
         return auction;
     }
@@ -40,6 +43,6 @@ public class AuctionServiceImpl implements AuctionService {
     public void newAuction(Auction auction) {
         auction.assignNewId();
         auctionRepository.newAuction(auction);
-        albumRepository.storeForAuction(auction.id(), auction.albums());
+        albumRepository.storeForAuction(auction.getId(), auction.getAlbums());
     }
 }

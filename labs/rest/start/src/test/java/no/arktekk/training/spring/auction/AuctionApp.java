@@ -12,12 +12,16 @@ import java.io.File;
  */
 public class AuctionApp {
 
-    public static void main(String[] args) throws Exception {
-        new AuctionApp().start();
+	private Server server;
+
+	public static void main(String[] args) throws Exception {
+    	AuctionApp auctionApp = new AuctionApp();
+    	auctionApp.start();
+    	auctionApp.server.join();
     }
 
     public void start() throws Exception {
-        Server server = new Server(8080);
+        server = new Server(8080);
 
         WebAppContext webapp = new WebAppContext();
         webapp.setContextPath("/");
@@ -29,7 +33,10 @@ public class AuctionApp {
         server.setHandler(contexts);
 
         server.start();
-        server.join();
+    }
+    
+    public void stop() throws Exception{
+        server.stop();
     }
 
     /**

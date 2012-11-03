@@ -48,33 +48,33 @@ public class Auction {
 		this.albums = albums;
 	}
 
-	public String id() {
+	public String getId() {
 		return id;
 	}
 
-	public Double minimumPrice() {
+	public Double getMinimumPrice() {
 		return minimumPrice;
 	}
 
-	public String description() {
+	public String getDescription() {
 		return description;
 	}
 
-	public DateTime starts() {
+	public DateTime getStarts() {
 		return starts;
 	}
 
-	public DateTime expires() {
+	public DateTime getExpires() {
 		return expires;
 	}
 
-	public List<Album> albums() {
+	public List<Album> getAlbums() {
 		return albums;
 	}
 
 	@XmlElement
 	public String getStartDateTime() {
-		return timeStampFormatter.print(starts().toDate(), no_NO);
+		return timeStampFormatter.print(getStarts().toDate(), no_NO);
 	}
 
 	public void setStartDateTime(String startDateTime) throws ParseException {
@@ -84,7 +84,7 @@ public class Auction {
 
 	@XmlElement
 	public String getExpiresDateTime() {
-		return timeStampFormatter.print(expires().toDate(), no_NO);
+		return timeStampFormatter.print(getExpires().toDate(), no_NO);
 	}
 
 	public void setExpiresDateTime(String expiresDateTime)

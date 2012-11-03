@@ -36,24 +36,24 @@ public class Album {
         this.label = label;
     }
 
-    public String id() {
+    public String getId() {
         return id;
     }
 
-    public String title() {
+    public String getTitle() {
         return title;
     }
 
-    public String artist() {
+    public String getArtist() {
         return artist;
     }
 
-    public Category category() {
+    public Category getCategory() {
         return category;
     }
 
 
-    public Label label() {
+    public Label getLabel() {
         return label;
     }
 

@@ -46,5 +46,20 @@ public class RestAuctionController {
 	public ModelAndView createAuction(@RequestBody String auctionXml) {
 		return null;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public AuctionList listAuctionsJson() {
+	    return null;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public Auction getAuctionJson(String auctionId) {
+		return null;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+    public Auction createAuctionJson(Auction newAuction) {
+	    return null;
+	}
 
 }

@@ -1,0 +1,23 @@
+JPA:
+Lag en ny entitet og persister den direkte med en entitymanager.
+Lag en dao for den nye entiteten og legg til en custom spørring med jdbctemplate.
+I samme dao prøv en custom spørring med hql. (Dette er mer hibernate en Spring) 
+http://docs.jboss.org/hibernate/orm/3.3/reference/en/html/queryhql.html
+Step igjennom en test og se om du forstår flush og clear på entitymanager. Se på SQL loggen.
+Hva skjer om du henter en Job entitet og utenfor transaksjonen prøver å aksessere events?
+
+Spring Transaksjoner:
+Fiks test som ikke er grønn. Hva var det som manglet?
+Lag service med programatisk transaction som returnerer noe.
+Lag noe som ruller tilbake for spesifikk exception
+Lag noe som ignorere rollback for spesifikk exception
+Lag noe som kaster en checked exception på innsiden av en transaksjon. Hva skjer?
+Lag noe som kaster en unchecked exception. Catch exception før du er ute av transaksjons blokken. Hva skjer?
+Lag et eksempel med en read-only transaksjon der du endrer objektet. Commites det til databasen?
+Lag et eksempel med nøstede transaksjoner hvor den ytterste er read-only og den indre read-write. Hva commites?
+Sett et breakpoint helt innerst i dao innenfor hvertfall 1 transaksjonslag. Studer stacken og se om du kan forstå Spring magien.
+Ta en titt på ConcurrentUpdate. Hvorfor får vi en optimistisk låsefeil? Hvordan vet Spring/JPA at det er et problem? Tips: se på entiteten.
+
+Div Spring:
+Ta en titt på klassen LazyInitBeanFactoryPostProcessor. Sett et breakpoint og kjør en test. Hva utfører den nå, hva annet kunne den brukes til?
+Eventuellt skru på debug logging for denne klassen. Hvilken beans er der?

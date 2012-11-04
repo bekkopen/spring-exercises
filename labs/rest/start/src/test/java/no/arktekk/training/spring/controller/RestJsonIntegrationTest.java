@@ -95,8 +95,7 @@ public class RestJsonIntegrationTest {
 
 	/**
 	 * Add logic to RestAuctionController.getAuctionJson so that HttpStatus.NOT_FOUND 
-	 * is returned when GETing an auction that does not exist in addition to an error string
-	 * saying "Auction with id [id] does not exist.".
+	 * is returned when GETing an auction that does not exist.
 	 * 
 	 * Tips:
 	 *  - throw RestException when auction is not found

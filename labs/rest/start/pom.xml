@@ -10,6 +10,11 @@
 	<artifactId>rest-start</artifactId>
 	<name>Labs :: ReST</name>
 
+	<properties>
+		<!-- TODO: tests for mvc and rest labs need to be update to work with spring 3.1 -->
+		<spring.version>3.0.5.RELEASE</spring.version>
+	</properties>
+	
 	<dependencies>
 		<!-- Spring Dependencies -->
 		<dependency>

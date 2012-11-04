@@ -17,6 +17,7 @@
         </property>
     </bean>
 
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
 
 	<bean id="jaxbMarshallerView" class="org.springframework.web.servlet.view.xml.MarshallingView">

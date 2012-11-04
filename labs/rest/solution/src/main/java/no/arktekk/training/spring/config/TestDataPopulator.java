@@ -46,6 +46,14 @@ public class TestDataPopulator {
             }
         }
     }
+    
+    public void reset() {
+    	template.update("delete from Labels");
+    	template.update("delete from Categories");
+    	template.update("delete from Albums");
+    	template.update("delete from Auctions");
+    	insertTestData();
+    }
 
     private boolean databaseEmpty() {
         Connection connection = null;

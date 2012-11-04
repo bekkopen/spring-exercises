@@ -1,24 +1,46 @@
 package no.arktekk.training.spring.controller;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import no.arktekk.training.spring.config.TestDataPopulator;
 import no.arktekk.training.spring.domain.Auction;
 import no.arktekk.training.spring.domain.AuctionList;
 import no.arktekk.training.spring.repository.AuctionRepository;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping;
 import org.springframework.web.servlet.view.xml.MarshallingView;
 
-import java.util.Map;
-
-import static org.junit.Assert.*;
-
 public class RestTest {
-    ApplicationContext applicationCtx = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/applicationContext.xml");
-    ApplicationContext webappCtx = new FileSystemXmlApplicationContext(new String[]{"/src/main/webapp/WEB-INF/rest-servlet.xml"},
-            applicationCtx);
+    static AbstractApplicationContext applicationCtx;
+    static AbstractApplicationContext webappCtx;
 
+    @BeforeClass
+    public static void loadContext() {
+        applicationCtx = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/applicationContext.xml");
+        webappCtx = new FileSystemXmlApplicationContext(new String[]{"/src/main/webapp/WEB-INF/rest-servlet.xml"},
+                applicationCtx);
+
+    }
+    @AfterClass
+    public static void closeContext() {
+    	new TestDataPopulator(applicationCtx.getBean(DataSource.class)).reset();
+    	webappCtx.close();
+    	applicationCtx.close();
+    }
+    
     /**
      * TODO: In the rest-servlet.xml add the RestAuction controller as bean either with xml or with component scanning.
      * If you Component scan, this test will check for duplicates.

@@ -5,6 +5,8 @@ package no.arktekk.training.spring.domain;
  */
 public class Category extends ValueList {
 
+	public Category() {
+	}
     public Category(int id, String name) {
         super(id, name);
     }

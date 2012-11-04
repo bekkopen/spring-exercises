@@ -6,7 +6,6 @@ package no.arktekk.training.spring.domain;
 public class Label extends ValueList {
 	
 	public Label() {
-		super();
 	}
 	
     public Label(int id, String name) {

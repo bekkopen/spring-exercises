@@ -12,7 +12,7 @@
 		<module>invocation-handler</module>
 		<module>environment-pre31</module>
 		<module>environment-post31</module>
-		<module>jpa-hibernate</module>
+		<module>spring-jpa-hibernate</module>
 	</modules>
 
 	<properties>

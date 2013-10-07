@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     
     <modules>
-    	<module>auction</module>
+    	<!--module>auction</module-->
     	<module>demos</module>
     	<module>labs</module>
     </modules>

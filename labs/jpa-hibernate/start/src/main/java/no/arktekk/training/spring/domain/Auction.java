@@ -1,27 +1,46 @@
 package no.arktekk.training.spring.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-/**
- * @author <a href="mailto:kaare.nilsen@arktekk.no">Kaare Nilsen</a>
- */
+@Entity(name = "AUCTIONS")
 public class Auction {
-    private final double id;
-    private final double minimumPrice;
-    private final String description;
-    private final DateTime starts;
-    private final DateTime expires;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+	@Column(name = "minimumPrice")
+    private double minimumPrice;
+	@Column(name = "description")
+    private String description;
+	@Column(name = "starts")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime starts;
+	@Column(name = "expires")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime expires;
 
+	Auction() {
+	}
 
-    public Auction(double id, double minimumPrice, String description, DateTime starts, DateTime expires) {
+	public Auction(double minimumPrice, String description, DateTime starts, DateTime expires) {
+		this.minimumPrice = minimumPrice;
+		this.description = description;
+		this.starts = starts;
+		this.expires = expires;
+	}
+	
+	public Auction(long id, double minimumPrice, String description, DateTime starts, DateTime expires) {
+		this(minimumPrice, description, starts, expires);
         this.id = id;
-        this.minimumPrice = minimumPrice;
-        this.description = description;
-        this.starts = starts;
-        this.expires = expires;
     }
 
-    public double id() {
+    public long id() {
         return id;
     }
 

@@ -5,11 +5,10 @@ import no.arktekk.training.spring.domain.Auction;
 import java.util.List;
 
 
-/**
- * @author <a href="mailto:kaare.nilsen@arktekk.no">Kaare Nilsen</a>
- */
 public interface AuctionRepository {
     List<Auction> listAllRunningAuctions();
 
-    Auction findById(Double auctionId);
+    Auction findById(long auctionId);
+    
+    Auction newAuction(Auction newAuction);
 }

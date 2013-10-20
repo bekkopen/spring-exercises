@@ -11,8 +11,6 @@ import no.arktekk.training.spring.domain.AuctionList;
 import no.arktekk.training.spring.domain.Category;
 import no.arktekk.training.spring.domain.Label;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.joda.time.DateTime;
 import org.junit.AfterClass;

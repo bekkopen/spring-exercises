@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.sql.DataSource;
 
@@ -19,8 +20,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping;
+import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.view.xml.MarshallingView;
 
 public class RestTest {
@@ -94,10 +97,7 @@ public class RestTest {
      */
     @Test
     public void step_3() {
-        DefaultAnnotationHandlerMapping handlerMapping = webappCtx.getBean(DefaultAnnotationHandlerMapping.class);
-        Map<String, Object> handlerMap = handlerMapping.getHandlerMap();
-        assertTrue(handlerMap.containsKey("/auctions"));
-        assertEquals(RestAuctionController.class, handlerMap.get("/auctions").getClass());
+    	assertTrue("Should have method mapped to /auctions", hasRequestMapping(webappCtx, "/auctions", RestAuctionController.class));
     }
 
     /**
@@ -122,10 +122,7 @@ public class RestTest {
      */
     @Test
     public void step_5() {
-        DefaultAnnotationHandlerMapping handlerMapping = webappCtx.getBean(DefaultAnnotationHandlerMapping.class);
-        Map<String, Object> handlerMap = handlerMapping.getHandlerMap();
-        assertTrue(handlerMap.containsKey("/auctions/{auctionId}"));
-        assertEquals(RestAuctionController.class,handlerMap.get("/auctions/{auctionId}").getClass());
+        assertTrue(hasRequestMapping(webappCtx, "/auctions/{auctionId}", RestAuctionController.class));
     }
 
     /**
@@ -185,7 +182,22 @@ public class RestTest {
 
     }
 
-    private boolean stdSpringBeanNames(String beanDefinedInWebCtx) {
+    private boolean hasRequestMapping(AbstractApplicationContext ctx, String uriPattern, Class<?> controllerType) {
+		RequestMappingHandlerMapping handlerMapping = ctx.getBean(RequestMappingHandlerMapping.class);
+		
+		Map<RequestMappingInfo, HandlerMethod> handlerMethods = handlerMapping.getHandlerMethods();
+		for (Entry<RequestMappingInfo, HandlerMethod> method : handlerMethods.entrySet()) {
+			if (method.getValue().getBeanType().equals(controllerType)) {
+				for (String pattern : method.getKey().getPatternsCondition().getPatterns()) {
+					if (pattern.equals(uriPattern)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	private boolean stdSpringBeanNames(String beanDefinedInWebCtx) {
         return beanDefinedInWebCtx.startsWith("org.springframework")
                 || beanDefinedInWebCtx.equals("messageSource");
     }

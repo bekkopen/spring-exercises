@@ -11,8 +11,6 @@ import no.arktekk.training.spring.domain.AuctionList;
 import no.arktekk.training.spring.domain.Category;
 import no.arktekk.training.spring.domain.Label;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.joda.time.DateTime;
 import org.junit.AfterClass;
@@ -132,11 +130,11 @@ public class RestJsonIntegrationTest {
 
 		System.out.println("ResponseBody: " + response.getBody());
 
-		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
-
 		Auction savedAuction = unmarshallJson(response, Auction.class);
 		Assert.assertNotNull(savedAuction);
 		Assert.assertEquals("New auction", savedAuction.getDescription());
+
+		Assert.assertEquals(HttpStatus.CREATED, response.getStatusCode());
 	}
 
 	private HttpEntity<byte[]> newJsonHttpEntity(byte[] body) {

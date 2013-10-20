@@ -130,11 +130,12 @@ public class RestJsonIntegrationTest {
 
 		System.out.println("ResponseBody: " + response.getBody());
 
-		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
 
 		Auction savedAuction = unmarshallJson(response, Auction.class);
 		Assert.assertNotNull(savedAuction);
 		Assert.assertEquals("New auction", savedAuction.getDescription());
+
+		Assert.assertEquals(HttpStatus.CREATED, response.getStatusCode());
 	}
 
 	private HttpEntity<byte[]> newJsonHttpEntity(byte[] body) {

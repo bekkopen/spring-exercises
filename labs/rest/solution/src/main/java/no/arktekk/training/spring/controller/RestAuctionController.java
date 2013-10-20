@@ -16,6 +16,7 @@ import no.arktekk.training.spring.service.AuctionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -39,7 +40,7 @@ public class RestAuctionController {
 		this.jaxb2Marshaller = jaxb2Marshaller;
 	}
 
-	@RequestMapping(method = GET, value = "/auctions")
+	@RequestMapping(method = GET, value = "/auctions", produces = "application/xml")
 	public ModelAndView listAuctions() {
 		List<Auction> auctions = auctionService.allRunningAuctions();
 		ModelAndView mav = new ModelAndView("jaxbMarshallerView");
@@ -47,7 +48,7 @@ public class RestAuctionController {
 		return mav;
 	}
 
-	@RequestMapping(method = GET, value = "/auctions/{auctionId}")
+	@RequestMapping(method = GET, value = "/auctions/{auctionId}", produces = "application/xml")
 	public ModelAndView getAuction(@PathVariable String auctionId) {
 		Auction auction = auctionService.findById(auctionId);
 		ModelAndView mav = new ModelAndView("jaxbMarshallerView");
@@ -55,7 +56,7 @@ public class RestAuctionController {
 		return mav;
 	}
 
-	@RequestMapping(method = POST, value = "/auctions")
+	@RequestMapping(method = POST, value = "/auctions", produces = "application/xml")
 	public ModelAndView createAuction(@RequestBody String auctionXml) {
 
 		Source source = new StreamSource(new StringReader(auctionXml));
@@ -67,12 +68,12 @@ public class RestAuctionController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/auctions", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/auctions", method = RequestMethod.GET)
 	public @ResponseBody AuctionList listAuctionsJson() {
 		return new AuctionList(auctionService.allRunningAuctions());
 	}
 
-	@RequestMapping(value = "/auctions/{auctionId}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@RequestMapping(value = "/auctions/{auctionId}", method = RequestMethod.GET)
 	public @ResponseBody Auction getAuctionJson(@PathVariable String auctionId) {
 		Auction auction = auctionService.findById(auctionId);
 		if (auction == null) {
@@ -82,10 +83,10 @@ public class RestAuctionController {
 		return auction;
 	}
 
-	@RequestMapping(value = "/auctions", method = RequestMethod.POST, headers = "Accept=application/json")
-	public @ResponseBody Auction createAuctionJson(@RequestBody Auction newAuction) {
+	@RequestMapping(value = "/auctions", method = RequestMethod.POST)
+	public ResponseEntity<Auction> createAuctionJson(@RequestBody Auction newAuction) {
 		auctionService.newAuction(newAuction);
-		return newAuction;
+		return new ResponseEntity<Auction>(newAuction, HttpStatus.CREATED);
 	}
 	
 	@ExceptionHandler(RestException.class)

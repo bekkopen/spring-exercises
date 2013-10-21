@@ -1,9 +1,6 @@
 package no.arktekk.training.spring.controller;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -179,7 +176,7 @@ public class RestTest {
      */
     @Test
     public void step_8() {
-
+    	fail();
     }
 
     private boolean hasRequestMapping(AbstractApplicationContext ctx, String uriPattern, Class<?> controllerType) {
